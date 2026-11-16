@@ -1,0 +1,817 @@
+* {
+  box-sizing: border-box;
+}
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, #0e243d 0%, #050b14 100%);
+  color: #dceeff;
+  font-family: 'Quicksand', sans-serif;
+  overflow: hidden;
+  user-select: none;
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Vinheta e Partículas Azuladas */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 42%, rgba(2, 6, 14, 0.85) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.floating-particles {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(124, 232, 255, 0.45), transparent),
+    radial-gradient(2px 2px at 70% 20%, rgba(45, 245, 200, 0.4), transparent),
+    radial-gradient(3px 3px at 40% 80%, rgba(56, 182, 255, 0.35), transparent),
+    radial-gradient(2px 2px at 85% 65%, rgba(255, 255, 255, 0.3), transparent);
+  animation: floatBg 12s infinite alternate ease-in-out;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatBg {
+  from { transform: translateY(0px) scale(1); }
+  to { transform: translateY(-15px) scale(1.03); }
+}
+
+.full-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.intro-bg-blur {
+  filter: blur(5px) brightness(0.4);
+  transform: scale(1.05);
+}
+
+/* Botões Gerais em Azul/Verde-Água */
+.btn {
+  background: linear-gradient(135deg, #1b6ca8 0%, #16877c 100%);
+  border: 2px solid #7ce8ff;
+  color: #ffffff;
+  padding: 13px 30px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  font-weight: 700;
+  z-index: 3;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 0 22px rgba(45, 245, 200, 0.65);
+}
+
+.btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: #3a506b;
+  background: #132236;
+}
+
+.btn-glow {
+  animation: pulseBtn 2s infinite alternate;
+}
+
+@keyframes pulseBtn {
+  from { box-shadow: 0 0 12px rgba(56, 182, 255, 0.4); }
+  to { box-shadow: 0 0 26px rgba(45, 245, 200, 0.85); }
+}
+
+/* =========================================
+   CAPA ESTILO VISUAL NOVEL / INDIE SOMBRIO
+   ========================================= */
+
+.vn-start-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: radial-gradient(circle at 32% 48%, #16324f 0%, #0b192c 52%, #050912 100%);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.vn-menu-side {
+  position: relative;
+  width: 48%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 6%;
+  z-index: 4;
+  animation: fadeIn 0.8s ease;
+}
+
+.vn-title-block {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.vn-title {
+  font-family: 'Henny Penny', cursive;
+  font-size: 5.2rem;
+  color: #f0f8ff;
+  margin: 0;
+  line-height: 1;
+  text-shadow:
+    0 3px 0 #050b14,
+    0 0 25px rgba(124, 232, 255, 0.65),
+    0 0 45px rgba(45, 245, 200, 0.45);
+}
+
+.vn-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.vn-line {
+  width: 45px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, #7ce8ff, transparent);
+}
+
+.vn-ornament-text {
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  color: #a8e6ff;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+.vn-menu-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.vn-menu-item {
+  background: transparent;
+  border: none;
+  color: #dceeff;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 8px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+  transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.vn-flourish {
+  font-size: 1.3rem;
+  color: #2df5c8;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.vn-flourish.flip {
+  display: inline-block;
+  transform: scaleX(-1) translateX(-8px);
+}
+
+.vn-menu-item:hover {
+  color: #ffffff;
+  transform: scale(1.06);
+  text-shadow: 0 0 14px rgba(45, 245, 200, 0.9), 0 2px 6px #000;
+}
+
+.vn-menu-item:hover .vn-flourish {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.vn-menu-item:hover .vn-flourish.flip {
+  transform: scaleX(-1) translateX(0);
+}
+
+.vn-version {
+  position: absolute;
+  bottom: 18px;
+  right: 24px;
+  font-size: 0.9rem;
+  color: rgba(180, 225, 255, 0.65);
+  letter-spacing: 1px;
+  z-index: 4;
+  text-shadow: 0 1px 4px #000;
+}
+
+.vn-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 10, 20, 0.82);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  padding: 20px;
+  animation: fadeIn 0.25s ease;
+}
+
+.vn-modal {
+  background: #0b1b2e;
+  border: 2px solid #38b6ff;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.9);
+  border-radius: 18px;
+  padding: 30px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+}
+
+.vn-modal h3 {
+  font-family: 'Henny Penny', cursive;
+  font-size: 2rem;
+  color: #e6f5ff;
+  margin: 0 0 16px;
+}
+
+.vn-modal p {
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: #cde6fa;
+  margin-bottom: 18px;
+}
+
+/* =========================================
+   RETRATOS DOS PERSONAGENS (VISUAL NOVEL)
+   ========================================= */
+
+.vn-portrait-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #060d17;
+  border: 2px solid #4ea8de;
+  border-radius: 10px;
+  padding: 4px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+}
+
+.vn-portrait-frame.normal {
+  width: 76px;
+}
+
+.vn-portrait-frame.large {
+  width: 118px;
+}
+
+.portrait-svg {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+}
+
+.vn-portrait-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #7ce8ff;
+  letter-spacing: 0.5px;
+  margin-top: 3px;
+  font-family: monospace;
+}
+
+/* =========================================
+   INTRO E TELAS DE JOGO (TEMA AZUL)
+   ========================================= */
+
+.tela {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  padding: 20px;
+}
+
+.intro-card {
+  z-index: 3;
+  max-width: 660px;
+  width: 92%;
+  background: rgba(9, 22, 38, 0.94);
+  border: 2px solid #38b6ff;
+  box-shadow: 0 0 35px rgba(45, 245, 200, 0.25);
+  border-radius: 20px;
+  padding: 30px;
+  animation: fadeIn 0.5s ease;
+}
+
+.intro-header {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.intro-dialogue-area {
+  flex: 1;
+}
+
+.intro-speaker {
+  font-family: 'Henny Penny', cursive;
+  font-size: 1.8rem;
+  color: #7ce8ff;
+  margin: 0 0 10px;
+}
+
+.intro-text {
+  font-size: 1.15rem;
+  line-height: 1.55;
+  min-height: 85px;
+  color: #e6f4ff;
+  margin: 0;
+}
+
+.intro-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn-skip {
+  background: transparent;
+  border: 1px solid rgba(124, 232, 255, 0.4);
+  color: #a8d5f5;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+
+.btn-skip:hover {
+  color: #fff;
+  border-color: #2df5c8;
+}
+
+/* Gameplay & HUD */
+.game-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 92%;
+  max-width: 840px;
+  z-index: 2;
+}
+
+.shake-error {
+  animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-4px, 0, 0); }
+  20%, 80% { transform: translate3d(6px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-8px, 0, 0); }
+  40%, 60% { transform: translate3d(8px, 0, 0); }
+}
+
+.hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 12px;
+  background: rgba(10, 24, 42, 0.88);
+  padding: 10px 20px;
+  border-radius: 14px;
+  border: 1px solid rgba(56, 182, 255, 0.45);
+}
+
+.hud-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fase-badge {
+  background: #1b6ca8;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border: 1px solid #7ce8ff;
+}
+
+.info-fase {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #dceeff;
+}
+
+.hud-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.eyes-counter {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #2df5c8;
+  background: rgba(45, 245, 200, 0.12);
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid #2df5c8;
+}
+
+.btn-mute {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(124, 232, 255, 0.35);
+  border-radius: 10px;
+  font-size: 1.2rem;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.btn-mute:hover {
+  transform: scale(1.1);
+}
+
+.stage-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.area-jogo {
+  width: 100%;
+  height: 365px;
+  background: radial-gradient(circle at center, rgba(13, 33, 56, 0.96) 0%, rgba(5, 12, 22, 0.99) 100%);
+  border: 2px solid #38b6ff;
+  box-shadow: 0 0 30px rgba(56, 182, 255, 0.2), inset 0 0 45px rgba(0, 0, 0, 0.85);
+  border-radius: 18px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.area-jogo h2 {
+  font-family: 'Henny Penny', cursive;
+  position: absolute;
+  top: 14px;
+  margin: 0;
+  font-size: 1.8rem;
+  color: #e6f5ff;
+  text-shadow: 0 0 12px #1b6ca8;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Caixa de Diálogo RPG com Retrato */
+.dialogue-box {
+  width: 100%;
+  margin-top: 14px;
+  margin-bottom: 14px;
+  background: rgba(9, 21, 36, 0.95);
+  border: 2px solid #38b6ff;
+  border-radius: 14px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 98px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.65);
+}
+
+.dialogue-content {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.dialogue-speaker {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #2df5c8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.dialogue-text {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #e6f4ff;
+  line-height: 1.4;
+}
+
+/* =========================================
+   FASE 1: PEDRA VERDE E VISÃO VERDE-ÁGUA
+   ========================================= */
+
+.sala-pedra.pedra-ativa {
+  cursor: none;
+}
+
+.dica-pedra {
+  color: #7ce8ff;
+  background: rgba(11, 28, 48, 0.85);
+  border: 1px dashed #2df5c8;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 1rem;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.lente-verde-agua {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  transition: background 0.05s linear;
+}
+
+.olho-fantasma-item {
+  position: absolute;
+  z-index: 3;
+  cursor: none;
+  filter: drop-shadow(0 0 14px #2df5c8);
+  transition: opacity 0.12s ease;
+}
+
+.pedra-cursor {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 5;
+  filter: drop-shadow(0 0 14px rgba(45, 245, 200, 0.75));
+}
+
+/* Olho de Botão (Fase 5) */
+.olho-botao {
+  width: 54px;
+  height: 54px;
+  background: radial-gradient(circle at 35% 35%, #2b3847, #05080d);
+  border: 4px solid #162436;
+  border-radius: 50%;
+  position: absolute;
+  cursor: pointer;
+  box-shadow: 0 0 15px #38b6ff, inset 0 0 8px rgba(124, 232, 255, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.1s ease;
+}
+
+.olho-botao::after {
+  content: "⁘";
+  color: #2df5c8;
+  font-size: 20px;
+}
+
+.olho-botao:hover {
+  transform: scale(1.18);
+  box-shadow: 0 0 25px #2df5c8;
+}
+
+/* Piano (Fase 2) */
+.piano {
+  display: flex;
+  gap: 8px;
+  margin-top: 35px;
+}
+
+.tecla {
+  width: 62px;
+  height: 175px;
+  background: linear-gradient(180deg, #f0f8ff 0%, #c8e2fa 100%);
+  color: #091a2e;
+  border: 2px solid #040b14;
+  border-radius: 0 0 10px 10px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 14px;
+  box-shadow: 0 6px 0 #3f6a96;
+  transition: transform 0.05s, background 0.1s;
+}
+
+.tecla.active, .tecla:active {
+  background: #2df5c8 !important;
+  color: #041c18;
+  transform: translateY(6px);
+  box-shadow: 0 0 0 #000;
+}
+
+/* Caixas Fase 3 */
+.vidas-container {
+  position: absolute;
+  top: 56px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #a8e6ff;
+}
+
+.grid-balas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 42px;
+}
+
+.box-bala {
+  width: 74px;
+  height: 74px;
+  border: 2px solid #38b6ff;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  background: rgba(56, 182, 255, 0.08);
+  transition: transform 0.12s, background 0.2s;
+}
+
+.box-bala:hover:not(.desativada) {
+  transform: scale(1.08);
+  background: rgba(45, 245, 200, 0.22);
+  border-color: #2df5c8;
+}
+
+.box-bala.desativada {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* Ratinhos Fase 4 */
+.mice-area {
+  display: flex;
+  gap: 35px;
+  margin-top: 45px;
+}
+
+.mice {
+  font-size: 3.6rem;
+  cursor: pointer;
+  transition: transform 0.1s ease, filter 0.2s ease;
+}
+
+.mice:hover {
+  transform: scale(1.15);
+}
+
+.mice.pulse {
+  transform: scale(1.42) translateY(-12px);
+  filter: drop-shadow(0 0 18px #2df5c8);
+}
+
+/* Fase 5 */
+.temporizador {
+  position: absolute;
+  top: 54px;
+  font-size: 1.6rem;
+  color: #7ce8ff;
+  font-weight: 700;
+}
+
+.temporizador.urgente {
+  color: #ff4d6d;
+  animation: pulseUrgent 0.4s infinite alternate;
+}
+
+@keyframes pulseUrgent {
+  from { transform: scale(1); }
+  to { transform: scale(1.2); }
+}
+
+.outra-mae-icon {
+  position: absolute;
+  bottom: 12px;
+  font-size: 3rem;
+  animation: pulseAranha 1.5s infinite alternate;
+}
+
+@keyframes pulseAranha {
+  from { transform: scale(1); filter: drop-shadow(0 0 6px #38b6ff); }
+  to { transform: scale(1.15); filter: drop-shadow(0 0 18px #2df5c8); }
+}
+
+/* Telas Finais */
+.titulo-final, .titulo-final-alt {
+  font-family: 'Henny Penny', cursive;
+  font-size: 4.5rem;
+  color: #e6f5ff;
+  text-shadow: 0 0 20px #1b6ca8, 0 0 40px #2df5c8;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.end-card {
+  z-index: 3;
+  max-width: 580px;
+  width: 90%;
+  background: rgba(8, 20, 36, 0.88);
+  backdrop-filter: blur(6px);
+  padding: 40px;
+  border-radius: 22px;
+  text-align: center;
+  border: 2px solid #2df5c8;
+}
+
+.end-card.lose {
+  border-color: #ff4d6d;
+}
+
+.final-desc {
+  font-size: 1.15rem;
+  line-height: 1.5;
+  margin: 15px 0;
+  color: #d4ebff;
+}
+
+.final-olhos {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2df5c8;
+  margin-bottom: 22px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsivo */
+@media (max-width: 720px) {
+  .vn-start-screen {
+    justify-content: center;
+  }
+  .vn-menu-side {
+    width: 100%;
+    padding-right: 0;
+  }
+  .intro-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .portrait-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+}
